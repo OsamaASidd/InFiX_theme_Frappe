@@ -9,6 +9,10 @@
 
 **InFiX Theme** is a cutting-edge aesthetic overhaul for your Frappe / ERPNext workspace. It radically modernizes your desk experience by replacing the default layout with fresh, deeply considered modern designs. It features glassmorphism, dynamic micro-animations, a modernized responsive sidebar navigation, and soft pastel interactive widgets that bring your screen to life.
 
+## Preview
+
+![InFiX Theme Desk](infix_theme/public/images/desk.png)
+
 ## Features
 
 - **Modern Layouts & Glassmorphism:** Clean, soft translucency combined with beautifully tuned drop shadows.
