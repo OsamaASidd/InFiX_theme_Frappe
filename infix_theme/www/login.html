@@ -1,0 +1,289 @@
+{% extends "templates/web.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block head_include %}
+<style>
+    /* Reset Frappe Base Styles */
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    body {
+        background: #e0f2f1;
+        /* light fallback */
+        background: radial-gradient(circle at top left, #e0f2f1 0%, #b2dfdb 100%);
+        font-family: var(--font-family, 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 20px;
+    }
+
+    /* Wavy layered SVG background effect */
+    .bg-waves {
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%2380cbc4' fill-opacity='0.4' d='M0,160L48,176C96,192,192,224,288,208C384,192,480,128,576,128C672,128,768,192,864,224C960,256,1056,256,1152,224C1248,192,1344,128,1392,96L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E"),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234db6ac' fill-opacity='0.5' d='M0,288L48,272C96,256,192,224,288,197.3C384,171,480,149,576,165.3C672,181,768,235,864,250.7C960,267,1056,245,1152,250.7C1248,256,1344,288,1392,304L1440,320L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: bottom;
+        background-size: cover;
+    }
+
+    /* Polka dots top left */
+    .bg-dots {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 200px;
+        height: 200px;
+        background-image: radial-gradient(rgba(18, 113, 91, 0.15) 2px, transparent 2px);
+        background-size: 20px 20px;
+        z-index: 0;
+    }
+
+    /* Hide native elements */
+    .page-card {
+        display: none !important;
+    }
+
+    .navbar {
+        display: none !important;
+    }
+
+    .footer {
+        display: none !important;
+    }
+
+    /* The modern card */
+    .auth-wrapper {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 420px;
+        margin: 50px auto;
+    }
+
+    .auth-card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 3rem 2rem 2rem 2rem;
+        box-shadow: 0 10px 40px rgba(18, 113, 91, 0.1);
+        position: relative;
+    }
+
+    /* Floating Logo */
+    .auth-logo-float {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #12715B;
+        border-radius: 50%;
+        width: 65px;
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 800;
+        font-size: 26px;
+        box-shadow: 0 4px 15px rgba(18, 113, 91, 0.3);
+        border: 5px solid white;
+        letter-spacing: -1px;
+    }
+
+    .auth-card h3 {
+        text-align: center;
+        color: #0a1f1b;
+        font-weight: 700;
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+    }
+
+    .auth-card p.subtitle {
+        text-align: center;
+        color: #6c757d;
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+        line-height: 1.4;
+    }
+
+    .auth-card .form-group {
+        margin-bottom: 15px;
+    }
+
+    .auth-card label {
+        font-size: 0.85rem;
+        color: #495057;
+        margin-bottom: 6px;
+        display: block;
+        font-weight: 500;
+    }
+
+    .auth-card .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 6px;
+        padding: 12px 15px;
+        width: 100%;
+        box-sizing: border-box;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+        background: #f8f9fa;
+    }
+
+    .auth-card .form-control:focus {
+        border-color: #12715B;
+        box-shadow: 0 0 0 3px rgba(18, 113, 91, 0.15);
+        outline: none;
+        background: #fff;
+    }
+
+    .auth-card .btn-primary {
+        background-color: #12715B;
+        border-color: #12715B;
+        width: 100%;
+        padding: 12px;
+        border-radius: 6px;
+        color: white;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+    }
+
+    .auth-card .btn-primary:hover {
+        background-color: #0f604d;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(15, 96, 77, 0.2);
+    }
+
+    .terms {
+        text-align: center;
+        font-size: 0.85rem;
+        margin-top: 15px;
+    }
+
+    .terms a {
+        color: #12715B;
+        text-decoration: underline;
+        font-weight: 500;
+    }
+</style>
+{% endblock %}
+
+{% block page_content %}
+<div class="bg-waves"></div>
+<div class="bg-dots"></div>
+
+<div class="auth-wrapper">
+    <div class="auth-card">
+        <div class="auth-logo-float">Ki</div>
+
+        <!-- Sign In -->
+        <section class="for-login">
+            <h3>Login to your Account</h3>
+            <p class="subtitle">Get started with our app, just create an account and enjoy the experience.</p>
+
+            <form class="form-signin form-login" role="form">
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="text" id="login_email" class="form-control" placeholder="email@example.com" required
+                        autofocus autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="login_password" class="form-control" placeholder="••••••••" required
+                        autocomplete="current-password">
+                </div>
+
+                <div
+                    style="font-size: 0.85rem; display: flex; justify-content: space-between; margin-bottom: 20px; margin-top: 10px;">
+                    <label style="color: #6c757d; cursor: pointer; display: flex; align-items: center; margin: 0;">
+                        <input type="checkbox" checked style="margin-right: 6px; width: auto; display: inline-block;">
+                        remember me
+                    </label>
+                    <a href="#forgot" style="color: #12715B; font-weight: 500; text-decoration: none;">Forgot
+                        Password?</a>
+                </div>
+
+                <button class="btn-primary btn-login" type="submit">Continue</button>
+
+                <div class="terms">
+                    {% if not disable_signup %}
+                    <a href="#signup" style="text-decoration: none;">Create Account</a>
+                    {% endif %}
+                </div>
+            </form>
+        </section>
+
+        <!-- Sign Up -->
+        <section class="for-signup" style="display: none;">
+            <h3>Sign Up</h3>
+            <p class="subtitle">Create an account and enjoy the experience.</p>
+
+            <form class="form-signup" role="form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signup_fullname" class="form-control" placeholder="Jane Doe" required
+                        autofocus>
+                </div>
+                <div class="form-group">
+                    <label>Email address</label>
+                    <input type="email" id="signup_email" class="form-control" placeholder="email@example.com" required>
+                </div>
+
+                <button class="btn-primary btn-signup" type="submit" style="margin-top: 15px;">Complete Sign Up</button>
+
+                <div class="terms">
+                    <p style="margin-bottom:0px; color:#6c757d;">Already have an account? <a href="#login">Sign In
+                            Instead</a></p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Forgot Password -->
+        <section class="for-forgot" style="display: none;">
+            <h3>Forgot Password</h3>
+            <p class="subtitle">Enter your email and we'll send you recovery instructions.</p>
+
+            <form class="form-forgot" role="form">
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label>Email address</label>
+                    <input type="email" id="forgot_email" class="form-control" placeholder="email@example.com" required
+                        autofocus>
+                </div>
+
+                <button class="btn-primary btn-forgot" type="submit">Reset Password</button>
+
+                <div class="terms" style="margin-top: 20px;">
+                    <p style="margin-bottom:0px; color:#6c757d;"><a href="#login">Back to Sign In</a></p>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    window.disable_signup = {{ disable_signup and "true" or "false" }};
+</script>
+<script>{% include "templates/includes/login/login.js" %}</script>
+{% endblock %}
+
+{% block sidebar %}{% endblock %}
