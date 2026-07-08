@@ -13,6 +13,16 @@
 
 ![InFiX Theme Desk](infix_theme/public/images/desk.png)
 
+## Client Customization — Brand Skin
+
+The theme supports per-client brand skins layered on top of the base styles via a
+single CSS file (`public/css/motley_skin.css`), without touching the core theme.
+Shown below: the **Motley Terpz** skin — custom palette and typography, dark
+branded sidebar with workspace icons and glow accents, full-width header band,
+and a collapsible icon-rail navigation.
+
+![Motley Terpz Client Skin](infix_theme/public/images/mtDesk.jpeg)
+
 ## Features
 
 - **Modern Layouts & Glassmorphism:** Clean, soft translucency combined with beautifully tuned drop shadows.
