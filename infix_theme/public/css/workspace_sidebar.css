@@ -1,6 +1,6 @@
 /* Motley Terpz brand skin — also registered in hooks app_include_css; this
    @import is a fallback so the skin loads even before workers restart */
-@import url('/assets/infix_theme/css/motley_skin.css?v=9');
+@import url('/assets/infix_theme/css/motley_skin.css?v=12');
 
 /* ── Workspace Quick-Links panel (infix theme) ─────────────────────────────
    position:fixed — same pattern as DataValue's .side-menu.

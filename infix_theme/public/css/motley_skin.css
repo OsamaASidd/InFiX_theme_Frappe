@@ -293,6 +293,38 @@ html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-
   display: block;
   text-align: center;
 }
+/* ── LOGO — dedicated .mt-logo* classes, immune to ki_style's 61px crop ── */
+html body .mt-logo-box {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start;
+  width: 100% !important;
+  height: 70px;
+  overflow: visible !important;
+  padding: 0 20px;
+}
+html body .mt-logo {
+  display: flex !important;
+  width: auto !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+html body .mt-logo-img {
+  display: block !important;
+  width: 180px !important;
+  max-width: 100% !important;
+  height: auto !important;
+  float: none !important;
+}
+/* collapsed rail: logo centered, scaled to fit */
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .mt-logo-box {
+  justify-content: center;
+  padding: 0 6px !important;
+}
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .mt-logo-img {
+  width: 92px !important;
+  min-width: 92px !important;
+}
 .navbar .nav-link,
 .navbar .es-icon,
 .navbar svg,

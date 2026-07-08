@@ -32,7 +32,7 @@ app_include_css = [
     "/assets/infix_theme/css/infix_theme.css?v=6",
     "/assets/infix_theme/css/workspace_sidebar.css?v=3",
     # Motley Terpz brand skin — must stay LAST so it wins the cascade
-    "/assets/infix_theme/css/motley_skin.css?v=9",
+    "/assets/infix_theme/css/motley_skin.css?v=12",
 ]
 app_include_js = [
     "/assets/infix_theme/vendor/simplebar/simplebar.js",
