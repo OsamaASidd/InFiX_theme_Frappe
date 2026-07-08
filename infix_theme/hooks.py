@@ -37,7 +37,7 @@ app_include_css = [
 app_include_js = [
     "/assets/infix_theme/vendor/simplebar/simplebar.js",
     "/assets/infix_theme/vendor/animated_icon/iconify-icon.min.js",
-    "/assets/infix_theme/js/infix_theme.js?v=5",
+    "/assets/infix_theme/js/infix_theme.js?v=6",
     "/assets/infix_theme/js/workspace_quicklinks.js"
 ]
 

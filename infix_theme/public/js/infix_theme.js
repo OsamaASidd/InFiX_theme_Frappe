@@ -303,3 +303,20 @@
     });
 
 })();
+
+/* ── Awesomebar placeholder override ─────────────────────────────────────────
+   Change AWESOMEBAR_PLACEHOLDER below to whatever the search bar should say. */
+(function () {
+    var AWESOMEBAR_PLACEHOLDER = "MBi’s Awesome Bar";
+
+    function set_placeholder() {
+        var $input = $("#navbar-search");
+        if ($input.length) $input.attr("placeholder", AWESOMEBAR_PLACEHOLDER);
+    }
+
+    $(document).on("app_ready page-change", set_placeholder);
+    $(function () {
+        set_placeholder();
+        setTimeout(set_placeholder, 1500); // navbar can render late on first load
+    });
+})();
