@@ -163,6 +163,14 @@
 
     infix_theme.highlight_active_route = function () {
         const current_route = window.location.pathname;
+        const route_parts = (frappe.get_route && frappe.get_route()) || [];
+
+        // On a workspace page, remember it
+        if (route_parts[0] === 'Workspaces' && route_parts[1]) {
+            const ws_href = '/app/' + route_parts[1].toLowerCase().replace(/ /g, '-');
+            try { sessionStorage.setItem('infix_last_workspace_href', ws_href); } catch(e) {}
+        }
+
         $('.main-nav > li').removeClass('active');
 
         // Exact matching
@@ -177,7 +185,16 @@
                 }
             });
         }
+
+        // If nothing matched, keep the last visited workspace highlighted
+        if ($('.main-nav > li.active').length === 0) {
+            try {
+                const last = sessionStorage.getItem('infix_last_workspace_href');
+                if (last) $(`.main-nav > li > a[href="${last}"]`).parent().addClass('active');
+            } catch(e) {}
+        }
     };
+
 
     //infix_theme.remove_native_elements = function () {
     //    $('.layout-side-section, .sidebar-toggle-btn').remove();
@@ -203,11 +220,11 @@
                 <svg id="infix-global-gradient" width="0" height="0" style="position:absolute; width:0; height:0;">
                     <defs>
                         <linearGradient id="infix-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#0d6b59" />
-                            <stop offset="40%" stop-color="#10b981" />
-                            <stop offset="65%" stop-color="#73c76b" />
-                            <stop offset="85%" stop-color="#d4dda0" />
-                            <stop offset="100%" stop-color="#fdf4d6" />
+                            <stop offset="0%" stop-color="#7E22CE" />
+                            <stop offset="40%" stop-color="#9333EA" />
+                            <stop offset="65%" stop-color="#A78BFA" />
+                            <stop offset="85%" stop-color="#DDD6FE" />
+                            <stop offset="100%" stop-color="#F5F3FF" />
                         </linearGradient>
                     </defs>
                 </svg>
@@ -276,7 +293,7 @@
         });
 
         infix_theme.setup();
-        infix_theme.mutate_charts(); // Try patching immediately
+        infix_theme.mutate_charts();
         observer.observe(document.body, { childList: true, subtree: true });
     });
 

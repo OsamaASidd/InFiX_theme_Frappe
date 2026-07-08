@@ -29,13 +29,15 @@ app_include_css = [
     "/assets/infix_theme/vendor/simplebar/simplebar.css",
     "/assets/infix_theme/css/ki_style.css",
     "/assets/infix_theme/css/ki_responsive.css",
-    "/assets/infix_theme/css/infix_theme.css",
-    "/assets/infix_theme/css/workspace_sidebar.css"
+    "/assets/infix_theme/css/infix_theme.css?v=6",
+    "/assets/infix_theme/css/workspace_sidebar.css?v=3",
+    # Motley Terpz brand skin — must stay LAST so it wins the cascade
+    "/assets/infix_theme/css/motley_skin.css?v=9",
 ]
 app_include_js = [
     "/assets/infix_theme/vendor/simplebar/simplebar.js",
     "/assets/infix_theme/vendor/animated_icon/iconify-icon.min.js",
-    "/assets/infix_theme/js/infix_theme.js",
+    "/assets/infix_theme/js/infix_theme.js?v=5",
     "/assets/infix_theme/js/workspace_quicklinks.js"
 ]
 

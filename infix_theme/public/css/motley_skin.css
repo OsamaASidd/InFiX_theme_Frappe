@@ -1,0 +1,439 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MOTLEY TERPZ DESK SKIN — grape/orchid brand layer over infix_theme (ki-admin)
+   Loaded last via @import from workspace_sidebar.css, so it wins the cascade.
+   Palette/typography mirror the approved "Motley Terpz — Ops" mockup.
+   ═══════════════════════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&display=swap');
+
+:root {
+  --mt-grape: #4d129e;
+  --mt-grape-2: #6a2bc4;
+  --mt-grape-ink: #1a0640;
+  --mt-grape-ink2: #2a0d5e;
+  --mt-orchid: #c464e4;
+  --mt-orchid-2: #d98bef;
+  --mt-orchid-soft: #f3e6fb;
+  --mt-orchid-bar: #f8f1fd;
+  --mt-ink: #1c1526;
+  --mt-ink-soft: #7a6f8a;
+  --mt-paper: #faf7fe;
+  --mt-line: #eae2f4;
+  --mt-line-strong: #d8cceb;
+  --mt-emerald: #1c8a5e;
+  --mt-amber: #c07d0c;
+  --mt-crimson: #c62b45;
+  --mt-f-sans: 'Archivo', system-ui, sans-serif;
+  --mt-f-disp: 'Bricolage Grotesque', system-ui, sans-serif;
+  --mt-f-num: 'JetBrains Mono', monospace;
+
+  /* remap infix_theme / frappe tokens onto the brand */
+  --primary: var(--mt-grape);
+  --primary-color: var(--mt-grape);
+  --primary-hover: var(--mt-grape-2);
+  --ki-primary: 77, 18, 158;
+  --np-bg: var(--mt-paper);
+  --body-color: var(--mt-paper);
+  --bodybg-color: var(--mt-paper);
+  --font-color: var(--mt-ink);
+  --font-light-color: var(--mt-ink-soft);
+  --border_color: var(--mt-line);
+  --surface-color: #ffffff;
+  --radius-lg: 14px;
+  --radius-md: 9px;
+}
+
+body {
+  font-family: var(--mt-f-sans) !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--mt-orchid); color: #fff; }
+
+/* ── SIDEBAR — deep purple with orchid glow ───────────────────────────────
+   Real DOM (ocean_sidebar.html): nav.vertical-sidebar > .app-logo + .app-nav
+   > ul.main-nav > li.menu-title | li > a (chevron = a::after, Phosphor font) */
+nav.vertical-sidebar {
+  background: linear-gradient(180deg, var(--mt-grape-ink), var(--mt-grape-ink2) 60%, #1e0847) !important;
+  border-right: 2px solid #120330 !important;
+  box-shadow: none !important;
+  color: #d9cbee;
+}
+nav.vertical-sidebar .app-logo {
+  border-right: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .07) !important;
+}
+nav.vertical-sidebar .app-logo .nav-profile {
+  border-color: rgba(255, 255, 255, .07) !important;
+}
+
+/* group titles ("Workspace") */
+nav.vertical-sidebar .app-nav .main-nav > li.menu-title span {
+  color: #8974b0 !important;
+  letter-spacing: 2px !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+
+/* items */
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a {
+  color: #c3b4dd !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  position: relative;
+  border-radius: 9px;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a svg,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a iconify-icon {
+  color: currentColor !important;
+  opacity: .85;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a::after {
+  color: #6d5896 !important; /* chevron */
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a:hover {
+  color: #fff !important;
+  background: rgba(255, 255, 255, .05) !important;
+}
+
+/* active / expanded item — orchid glow bar */
+nav.vertical-sidebar .app-nav .main-nav > li.active > a,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a[aria-expanded=true] {
+  color: #fff !important;
+  background: linear-gradient(90deg, rgba(196, 100, 228, .25), transparent) !important;
+  font-size: 13.5px !important;
+}
+nav.vertical-sidebar .app-nav .main-nav > li.active > a::before,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a[aria-expanded=true]::before {
+  content: "";
+  position: absolute;
+  left: -12px; top: 6px; bottom: 6px;
+  width: 4px;
+  background: var(--mt-orchid);
+  border-radius: 0 4px 4px 0;
+  box-shadow: 0 0 10px rgba(196, 100, 228, .7);
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a[aria-expanded=true] svg {
+  color: var(--mt-orchid-2) !important;
+}
+
+/* submenu lists */
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul {
+  background: rgba(255, 255, 255, .03) !important;
+  border-radius: 9px;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul li,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul li a {
+  color: #b9a6dd !important;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul li a:hover {
+  color: #fff !important;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul li.active,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul li.active a {
+  color: var(--mt-orchid-2) !important;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) ul li.active a::before {
+  background-color: var(--mt-orchid) !important;
+  box-shadow: 0 0 8px rgba(196, 100, 228, .7);
+}
+
+/* badges on sidebar items */
+nav.vertical-sidebar .badge {
+  background: var(--mt-crimson) !important;
+  color: #fff !important;
+  font-family: var(--mt-f-num);
+}
+
+/* simplebar scrollbar (the sidebar uses data-simplebar, not native scroll) */
+nav.vertical-sidebar .simplebar-scrollbar::before {
+  background: #3a1b6b !important;
+  opacity: 1;
+}
+
+/* quick-links panel next to the sidebar */
+#infix-wql-panel { border-right-color: var(--mt-line-strong) !important; }
+
+/* ── NAVBAR — grape band with drip edge ─────────────────────────────────── */
+body.infix-theme-active .sticky-top .navbar {
+  background: linear-gradient(120deg, var(--mt-grape) 0%, #5a1ab0 100%) !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  color: #fff;
+}
+/* ── LAYOUT — purple connects: sidebar + full-width header band ─────────── */
+/* The content column starts flush against the dark sidebar (286px) so the
+   grape navbar touches it and spans the full width. The quick-links panel
+   tucks BELOW the navbar, and the page body shifts right to clear it.
+   Extra `body`/`html` in the selectors beats workspace_sidebar.css's
+   `padding-left: 506px !important` on specificity, so this wins no matter
+   which order the files load in. */
+html body .app-wrapper .app-content {
+  padding-left: 286px !important;
+}
+html body.infix-theme-active .page-container {
+  margin-left: 220px;
+}
+html body #infix-wql-panel {
+  top: var(--navbar-height, 60px) !important;
+  height: calc(100vh - var(--navbar-height, 60px)) !important;
+  z-index: 1000 !important;
+  border-top: 1px solid var(--mt-line) !important;
+}
+/* keep the grape band itself above the panel */
+body.infix-theme-active .sticky-top {
+  z-index: 1010;
+  position: sticky;
+  top: 0;
+}
+/* sidebar fold/unfold toggle — white so it reads on the grape band */
+.header-toggle,
+.header-toggle iconify-icon {
+  color: #f0e8fa !important;
+}
+.header-toggle:hover,
+.header-toggle:hover iconify-icon {
+  color: #fff !important;
+}
+
+/* ── SIDEBAR ICONS (expanded state) ─────────────────────────────────────── */
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  margin-right: 10px;
+  flex: none;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon svg.icon {
+  width: 16px;
+  height: 16px;
+}
+/* frappe icon sprites color via --icon-stroke/fill vars, not text color —
+   force them light so they read on the dark purple */
+nav.vertical-sidebar .sidebar-item-icon svg.icon,
+nav.vertical-sidebar .sidebar-item-icon svg.icon use {
+  --icon-stroke: #e9defa;
+  --icon-fill: transparent;
+  --icon-fill-bg: transparent;
+  stroke: #e9defa;
+  fill: none;
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a:hover .sidebar-item-icon svg.icon,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a:hover .sidebar-item-icon svg.icon use {
+  --icon-stroke: #ffffff;
+  stroke: #ffffff;
+}
+nav.vertical-sidebar .app-nav .main-nav > li.active > a .sidebar-item-icon svg.icon,
+nav.vertical-sidebar .app-nav .main-nav > li.active > a .sidebar-item-icon svg.icon use {
+  --icon-stroke: var(--mt-orchid-2);
+  stroke: var(--mt-orchid-2);
+}
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon i,
+nav.vertical-sidebar .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon iconify-icon {
+  font-size: 16px;
+}
+
+/* ── COLLAPSED SIDEBAR (.semi-nav) — compact icon rail ──────────────────── */
+:root {
+  --semi-nav: 6.5rem; /* wider rail so labels fit without mid-word breaks */
+}
+/* content + quick-links panel follow the narrow rail instead of leaving a gap */
+html body .app-wrapper .semi-nav ~ .app-content {
+  padding-left: var(--semi-nav, 6.5rem) !important;
+}
+html body.sidebar-menu-opened #infix-wql-panel {
+  left: var(--semi-nav, 6.5rem) !important;
+}
+
+/* items become centered mini-tiles: icon on top, tiny 2-line label below
+   (overrides both ki_style's font-size:0 and this skin's 13.5px) */
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a {
+  font-size: 9.5px !important;
+  font-weight: 600 !important;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 9px 4px !important;
+  text-align: center;
+  line-height: 1.25;
+  white-space: normal;
+}
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-label {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-width: 100%;
+  overflow-wrap: normal;
+  hyphens: none;
+}
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon {
+  width: auto;
+  margin: 0 !important;
+}
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon svg.icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon i,
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a .sidebar-item-icon iconify-icon {
+  font-size: 20px !important;
+}
+/* no chevrons in the rail */
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li:not(.menu-title) > a::after {
+  content: none !important;
+}
+/* group label shrinks to a centered micro-heading */
+html body .app-wrapper nav.vertical-sidebar.semi-nav:not(:hover) .app-nav .main-nav > li.menu-title span {
+  font-size: 8px !important;
+  letter-spacing: 1px !important;
+  display: block;
+  text-align: center;
+}
+.navbar .nav-link,
+.navbar .es-icon,
+.navbar svg,
+.navbar .search-icon svg {
+  color: #f0e8fa !important;
+  fill: #f0e8fa !important;
+  stroke: none;
+}
+.navbar #navbar-search,
+.navbar .search-bar input,
+.navbar .search-bar .awesomplete > input {
+  background: rgba(255, 255, 255, .16) !important;
+  border: none !important;
+  border-radius: 9px !important;
+  color: #fff !important;
+  font-family: var(--mt-f-num) !important;
+  font-size: 13px !important;
+}
+.navbar #navbar-search::placeholder,
+.navbar .search-bar input::placeholder { color: #d3bff0 !important; }
+.navbar #navbar-search:focus,
+.navbar .search-bar input:focus {
+  outline: 2px solid var(--mt-orchid-2) !important;
+  background: rgba(255, 255, 255, .24) !important;
+  box-shadow: none !important;
+}
+
+/* ── TYPOGRAPHY — display headings + mono numerals ──────────────────────── */
+.page-title .title-text,
+.title-area .title-text,
+.section-head,
+.form-tabs .nav-link.active,
+.ce-header {
+  font-family: var(--mt-f-disp) !important;
+  font-weight: 800;
+  letter-spacing: -.4px;
+  color: var(--mt-ink);
+}
+[data-fieldtype="Currency"],
+[data-fieldtype="Int"],
+[data-fieldtype="Float"],
+[data-fieldtype="Percent"],
+.number-widget-box .number,
+.list-count,
+.frappe-timestamp,
+.dt-cell__content {
+  font-family: var(--mt-f-num) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── BUTTONS ────────────────────────────────────────────────────────────── */
+.btn-primary {
+  background: var(--mt-grape) !important;
+  border-color: var(--mt-grape) !important;
+  border-radius: 9px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+  background: var(--mt-grape-2) !important;
+  border-color: var(--mt-grape-2) !important;
+}
+.btn-default:hover, .btn-secondary:hover {
+  background: var(--mt-orchid-soft) !important;
+  color: var(--mt-grape) !important;
+}
+input[type="checkbox"], input[type="radio"] { accent-color: var(--mt-grape); }
+
+/* focus ring — grape instead of the old violet */
+.form-control:not([type="checkbox"]):not([type="radio"]):focus,
+.input-with-feedback:not([type="checkbox"]):not([type="radio"]):focus,
+.frappe-control input:not([type="checkbox"]):not([type="radio"]):focus,
+.frappe-control select:focus,
+.frappe-control textarea:focus,
+.awesomplete > input:focus {
+  border-color: var(--mt-grape) !important;
+  box-shadow: 0 0 0 3px rgba(77, 18, 158, .15) !important;
+}
+
+/* ── CARDS & WIDGETS ────────────────────────────────────────────────────── */
+.widget,
+.frappe-card,
+.form-dashboard-section {
+  border: 1px solid var(--mt-line) !important;
+  border-radius: 14px !important;
+}
+.frappe-card:hover,
+.widget.links-widget-box:hover {
+  box-shadow: 0 14px 28px -10px rgba(77, 18, 158, .14) !important;
+  border-color: var(--mt-line-strong) !important;
+}
+.modal-content {
+  border-radius: 14px !important;
+  border: 1px solid var(--mt-line-strong) !important;
+}
+
+/* ── LIST VIEW — register look ──────────────────────────────────────────── */
+.list-row-head {
+  background: var(--mt-orchid-soft) !important;
+  border-bottom: 2px solid var(--mt-line-strong) !important;
+}
+.list-row-head .list-row-col span,
+.list-row-head .list-subject span {
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #7a5b9c !important;
+  font-weight: 700;
+}
+.list-row-container:nth-child(even) { background: var(--mt-orchid-bar); }
+.list-row:hover, .list-row-container:hover { background: var(--mt-orchid-soft) !important; }
+.list-row .level-left .list-subject a { font-weight: 600; }
+
+/* report/datatable header */
+.dt-header .dt-cell--header .dt-cell__content {
+  background: var(--mt-orchid-soft);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #7a5b9c;
+  font-weight: 700;
+}
+
+/* ── INDICATORS — emerald / amber / crimson ─────────────────────────────── */
+.indicator-pill.green, .indicator-pill.light-green {
+  background: rgba(28, 138, 94, .12) !important; color: var(--mt-emerald) !important;
+}
+.indicator-pill.orange, .indicator-pill.yellow {
+  background: rgba(192, 125, 12, .12) !important; color: var(--mt-amber) !important;
+}
+.indicator-pill.red {
+  background: rgba(198, 43, 69, .1) !important; color: var(--mt-crimson) !important;
+}
+.indicator-pill.blue, .indicator-pill.purple {
+  background: var(--mt-orchid-soft) !important; color: var(--mt-grape) !important;
+}
+
+/* avatars */
+.avatar-frame, .avatar .standard-image {
+  background-color: var(--mt-grape-2) !important;
+  color: #fff !important;
+}

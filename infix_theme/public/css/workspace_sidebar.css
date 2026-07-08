@@ -1,24 +1,34 @@
+/* Motley Terpz brand skin — also registered in hooks app_include_css; this
+   @import is a fallback so the skin loads even before workers restart */
+@import url('/assets/infix_theme/css/motley_skin.css?v=9');
+
 /* ── Workspace Quick-Links panel (infix theme) ─────────────────────────────
-   Injected by workspace_quicklinks.js into .layout-main on specific workspace
-   pages. Styled to match the datavalue-theme reference screenshot.
+   position:fixed — same pattern as DataValue's .side-menu.
+   Always visible, never inside a page container.
    ─────────────────────────────────────────────────────────────────────────── */
 
+/* ── panel: always visible, fixed after vertical-sidebar ────────────────── */
+/* InFiX vertical-sidebar is position:fixed, width:286px (18rem at 16px).
+   Panel sits at left:286px — same logic as DataValue: side-menu left:0 + dv-app-content margin-left:340px */
 #infix-wql-panel {
+    position: fixed;
+    top: 0;
+    left: 286px;
     width: 220px;
-    min-width: 220px;
-    max-width: 220px;
-    flex-shrink: 0;
+    height: 100vh;
+    z-index: 1200;
     display: flex;
     flex-direction: column;
     background: var(--fg-color, #fff);
     border-right: 1px solid var(--border-color, #e2e8f0);
-    height: 100%;
-    min-height: calc(100vh - 60px);
     overflow: hidden;
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
     padding: 10px 0 16px;
+}
+
+/* ── shift .app-content right to clear both sidebars ────────────────────── */
+/* Original infix_theme.css: padding-left:286px. We add 220px for the panel. */
+.app-wrapper .app-content {
+    padding-left: 506px !important;
 }
 
 /* ── search row ──────────────────────────────────────────────────────────── */
@@ -151,17 +161,4 @@
     text-align: center;
     padding: 20px 12px;
     margin: 0;
-}
-
-/* ── layout-main must be flex so panel sits beside content ───────────────── */
-body.infix-theme-active[data-route^="Workspaces/"] .layout-main {
-    display: flex !important;
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
-}
-
-body.infix-theme-active[data-route^="Workspaces/"] .layout-main-section-wrapper {
-    flex: 1 !important;
-    min-width: 0 !important;
-    overflow: auto !important;
 }

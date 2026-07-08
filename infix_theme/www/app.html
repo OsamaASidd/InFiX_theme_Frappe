@@ -11,11 +11,54 @@
     {% for include in include_css -%}
     {{ include_style(include) }}
     {%- endfor -%}
+    <style>
+        /* WQL panel — inlined to guarantee it loads regardless of asset caching */
+        #infix-wql-panel {
+            position: fixed !important;
+            top: 0 !important;
+            left: var(--sidebar-width, 286px) !important;
+            width: 220px !important;
+            height: 100vh !important;
+            z-index: 1200 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            background: var(--fg-color, #fff) !important;
+            border-right: 1px solid var(--border-color, #e2e8f0) !important;
+            overflow: hidden !important;
+            padding: 10px 0 16px !important;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.06) !important;
+        }
+        .app-wrapper .app-content {
+            padding-left: calc(var(--sidebar-width, 286px) + 220px) !important;
+        }
+    </style>
 </head>
 
 <body>
 
     {% include "infix_theme/templates/includes/ocean/main.html" %}
+
+    <!-- WQL panel: direct child of <body>, outside .app-wrapper.
+         position:fixed in CSS — exactly like DataValue's #side-menu-component. -->
+    <div id="infix-wql-panel">
+        <div class="wql-search-row">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor" style="opacity:.5;flex-shrink:0">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.868-3.833zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <input class="wql-search-input" type="text" placeholder="Search…" />
+        </div>
+        <div class="wql-tab-row">
+            <button class="wql-tab active" data-tab="menu">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M2.5 4h11v1.5h-11V4zm0 3.5h11V9h-11V7.5zm0 3.5h7v1.5h-7V11z"/></svg>
+                Menu
+            </button>
+            <button class="wql-tab" data-tab="shortcuts">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"/><path d="M8 4a.5.5 0 0 1 .5.5v3.793l2.146 2.147a.5.5 0 0 1-.707.707l-2.5-2.5A.5.5 0 0 1 7.5 8V4.5A.5.5 0 0 1 8 4z"/></svg>
+                Shortcuts
+            </button>
+        </div>
+        <div id="wql-body"><p class="wql-empty">Open a workspace to load links.</p></div>
+    </div>
 
     <!-- SVGs -->
     <div id="all-symbols" style="display:none"></div>

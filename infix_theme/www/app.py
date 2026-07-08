@@ -2,6 +2,8 @@ import os
 import json
 import re
 
+no_cache = 1
+
 import frappe
 import frappe.sessions
 from frappe import _

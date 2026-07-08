@@ -51,7 +51,7 @@
 }
 
 .infix-nav-item.active {
-    background-color: rgba(32, 178, 170, 0.1);
+    background-color: rgba(147, 51, 234, 0.1);
     /* Primary color w/ opacity */
     color: var(--primary-color);
     border-left-color: var(--primary-color);
@@ -66,7 +66,7 @@
 
 :root {
     /* KI Admin Base Palette (Isolated with --ki- prefix to prevent Frappe UI breaks) */
-    --ki-primary: 15, 98, 106;
+    --ki-primary: 147, 51, 234;
     --ki-secondary: 98, 98, 98;
     --ki-success: 10, 185, 100;
     --ki-danger: 225, 78, 90;
@@ -77,11 +77,11 @@
     --ki-white: 255, 255, 255;
 
     /* Frappe Native Primary Variables */
-    --primary: #0f626a;
-    --np-bg: #f5fbfb;
-    --font-color: #082f32;
-    --body-color: #f5fbfb;
-    --bodybg-color: #f6f7fa;
+    --primary: #9333EA;
+    --np-bg: #FAF5FF;
+    --font-color: #1E0A35;
+    --body-color: #FAF5FF;
+    --bodybg-color: #FAF5FF;
     --font-light-color: #a0a0b0;
     --grid_color: rgba(144, 164, 246, 0.21);
     --border_color: rgba(0, 0, 0, 0.21);
@@ -92,7 +92,7 @@
 
     /* Variables mapped for Frappe widgets */
     --primary-color: var(--primary);
-    --primary-hover: #0c4e55;
+    --primary-hover: #7E22CE;
     --bg-color: var(--bodybg-color);
     --surface-color: #ffffff;
     --text-primary: var(--font-color);
@@ -170,7 +170,7 @@ select.input-with-feedback {
 .frappe-control textarea:focus,
 .awesomplete>input:focus {
     border-color: var(--primary-color) !important;
-    box-shadow: 0 0 0 3px rgba(15, 98, 106, 0.15) !important;
+    box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.15) !important;
     background-color: #ffffff !important;
     outline: none !important;
 }
@@ -211,13 +211,21 @@ select.input-with-feedback {
     cursor: pointer;
 }
 
-/* Prevent layout jumping on Homepage only */
+/* Collapse sidebar to zero width on workspace pages so Frappe still renders shortcuts into it,
+   allowing them to persist when navigating to report pages (display:none breaks this) */
 body.infix-theme-active[data-route="Workspaces"] .layout-side-section,
-body.infix-theme-active[data-route="Workspaces"] .sidebar-toggle-btn,
 body.infix-theme-active[data-route^="Workspaces/"] .layout-side-section,
-body.infix-theme-active[data-route^="Workspaces/"] .sidebar-toggle-btn,
-body.infix-theme-active[data-route=""] .layout-side-section,
-body.infix-theme-active[data-route=""] .sidebar-toggle-btn {
+body.infix-theme-active[data-route=""] .layout-side-section {
+    width: 0 !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    flex: 0 0 0px !important;
+}
+
+/* Always hide the toggle button */
+body.infix-theme-active .sidebar-toggle-btn {
     display: none !important;
 }
 
@@ -333,7 +341,7 @@ nav .app-nav .main-nav>li>a:hover {
 }
 
 nav .app-nav .main-nav>li.active>a {
-    background-color: #12715b !important;
+    background-color: #9333EA !important;
     color: #ffffff !important;
 }
 
@@ -889,7 +897,7 @@ span.sidebar-item-label {
 
 /* Variation 2: Green Chart Gradient */
 .number-widget-box[data-color-index="1"] {
-    background: linear-gradient(135deg, #10b981 0%, #73c76b 60%, #d4dda0 100%) !important;
+    background: linear-gradient(135deg, #F59E0B 0%, #FCD34D 60%, #FEF9C3 100%) !important;
     border: 0px !important;
 }
 
@@ -930,7 +938,7 @@ span.sidebar-item-label {
 
 /* Variation 3: Linear Gradient Light/Dark Teal */
 .number-widget-box[data-color-index="2"] {
-    background: linear-gradient(135deg, #10b981 0%, #0d6b59 100%) !important;
+    background: linear-gradient(135deg, #9333EA 0%, #6D28D9 100%) !important;
 }
 
 .number-widget-box[data-color-index="2"] .widget-title,
@@ -990,7 +998,7 @@ span.sidebar-item-label {
 
 .number-widget-box[data-color-index="3"]::after {
     background-color: #ffffff !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f626a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3Cpath d='M9 16l2 2 4-4'/%3E%3C/svg%3E") !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239333ea' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='4' width='18' height='18' rx='2' ry='2'%3E%3C/rect%3E%3Cline x1='16' y1='2' x2='16' y2='6'%3E%3C/line%3E%3Cline x1='8' y1='2' x2='8' y2='6'%3E%3C/line%3E%3Cline x1='3' y1='10' x2='21' y2='10'%3E%3C/line%3E%3Cpath d='M9 16l2 2 4-4'/%3E%3C/svg%3E") !important;
 }
 
 .number-widget-box[data-color-index="3"]::before {
