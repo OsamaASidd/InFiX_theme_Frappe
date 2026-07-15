@@ -469,3 +469,72 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--mt-grape); }
   background-color: var(--mt-grape-2) !important;
   color: #fff !important;
 }
+
+/* ── MOBILE (≤991px, same breakpoint as infix_theme.css) ──────────────────
+   The desktop layout offsets above (padding-left: 286px on .app-content,
+   margin-left: 220px on .page-container, and workspace_sidebar.css's
+   padding-left: 506px) assume the fixed vertical sidebar + quick-links
+   panel are visible. On mobile the base theme hides the sidebar
+   (nav { margin-left: -286px }) but those !important offsets still won,
+   pushing the whole desk off-screen to the right. Reset them here —
+   this file loads last, so these rules win on mobile only. */
+@media (max-width: 991px) {
+  html body .app-wrapper .app-content {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+  html body.infix-theme-active .page-container {
+    margin-left: 0 !important;
+  }
+  /* quick-links panel becomes a slide-in drawer on mobile.
+     app.html inlines #infix-wql-panel rules with !important (left/width/
+     z-index), so every property here must carry !important too, and
+     visibility backs up the transform in case a script sets inline styles. */
+  html body #infix-wql-panel {
+    left: 0 !important;
+    width: 272px !important;
+    max-width: 85vw !important;
+    visibility: hidden !important;
+    transform: translateX(-105%) !important;
+    transition: transform 0.2s ease, visibility 0.2s !important;
+    z-index: 1045 !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18) !important;
+  }
+  html body.wql-mobile-open #infix-wql-panel {
+    visibility: visible !important;
+    transform: translateX(0) !important;
+  }
+  .wql-mobile-toggle {
+    display: flex !important;
+  }
+  body.wql-mobile-open .wql-mobile-backdrop {
+    display: block !important;
+  }
+}
+
+/* ── quick-links mobile drawer chrome (inert on desktop) ────────────────── */
+.wql-mobile-toggle {
+  display: none;
+  position: fixed;
+  bottom: 18px;
+  right: 16px;
+  z-index: 1044;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  background: var(--mt-grape, #6c2e91);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.wql-mobile-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1043;
+  background: rgba(0, 0, 0, 0.35);
+}

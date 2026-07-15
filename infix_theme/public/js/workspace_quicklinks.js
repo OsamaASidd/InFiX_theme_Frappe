@@ -106,7 +106,25 @@
         }
     }
 
+    function setup_mobile_drawer() {
+        if ($(".wql-mobile-toggle").length) return;
+        $("body").append(
+            '<button class="wql-mobile-toggle" aria-label="Open menu">' +
+                '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
+                '<path d="M2 4h12M2 8h12M2 12h12"/></svg> Menu</button>' +
+            '<div class="wql-mobile-backdrop"></div>'
+        );
+        $(document).on("click", ".wql-mobile-toggle", function () {
+            $("body").toggleClass("wql-mobile-open");
+        });
+        // close the drawer on backdrop tap or after navigating via a link
+        $(document).on("click", ".wql-mobile-backdrop, #infix-wql-panel .wql-link", function () {
+            $("body").removeClass("wql-mobile-open");
+        });
+    }
+
     function wire_events() {
+        setup_mobile_drawer();
         $(document).on("click", "#infix-wql-panel .wql-tab", function () {
             _active_tab = $(this).data("tab");
             $("#infix-wql-panel .wql-tab").removeClass("active");
